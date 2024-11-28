@@ -18,20 +18,28 @@ kernel_sizes = [(3, 3),  (13, 13)]
 sobelHorizontal = cv2.Sobel(gray,cv2.CV_64F,1,0,ksize=5)  # x dir 
 sobelVertical   = cv2.Sobel(gray,cv2.CV_64F,0,1,ksize=5)  # y dir
 
+# Combine the horizontal and vertical edges by adding them together
+sobelCombined = cv2.addWeighted(sobelHorizontal, 0.5, sobelVertical, 0.5, 0)
+
 nrows = 2
-ncols = 2
+ncols = 3
 # Plot the original 
 plt.subplot(nrows, ncols, 1), plt.imshow(img_rgb)
 plt.title('Original'), plt.xticks([]), plt.yticks([])
 # Plot the grayscale image
 plt.subplot(nrows, ncols, 2), plt.imshow(gray, cmap='gray')
 plt.title('GrayScale'), plt.xticks([]), plt.yticks([])
-#Plot the sobelHorizontal
+# Plot the sobelHorizontal
 plt.subplot(nrows, ncols, 3),plt.imshow(sobelHorizontal, cmap='gray')
 plt.title('GrayScale'), plt.xticks([]), plt.yticks([])
-#Plot the sobelVertical
+# Plot the sobelVertical
 plt.subplot(nrows, ncols, 4), plt.imshow(sobelVertical, cmap='gray')
 plt.title('GrayScale'), plt.xticks([]), plt.yticks([])
+# Plot the sobelSum
+plt.subplot(nrows, ncols, 5), plt.imshow(sobelCombined, cmap='gray')
+plt.title('Sobel Sum')
+plt.xticks([]), plt.yticks([])
+
 
 # Apply Gaussian Blur with different kernel sizes and display the results
 #for i, size in enumerate(kernel_sizes, start=5):
