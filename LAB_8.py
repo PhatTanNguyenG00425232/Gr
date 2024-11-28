@@ -21,6 +21,9 @@ sobelVertical   = cv2.Sobel(gray,cv2.CV_64F,0,1,ksize=5)  # y dir
 # Combine the horizontal and vertical edges by adding them together
 sobelCombined = cv2.addWeighted(sobelHorizontal, 0.5, sobelVertical, 0.5, 0)
 
+#Canny edge detection
+canny = cv2.Canny(gray,100,200)
+
 nrows = 2
 ncols = 3
 # Plot the original 
@@ -39,7 +42,10 @@ plt.title('GrayScale'), plt.xticks([]), plt.yticks([])
 plt.subplot(nrows, ncols, 5), plt.imshow(sobelCombined, cmap='gray')
 plt.title('Sobel Sum')
 plt.xticks([]), plt.yticks([])
-
+# Plot the Canny
+plt.subplot(nrows, ncols, 6), plt.imshow(canny, cmap='gray')
+plt.title('Canny Edge Image')
+plt.xticks([]), plt.yticks([])
 
 # Apply Gaussian Blur with different kernel sizes and display the results
 #for i, size in enumerate(kernel_sizes, start=5):
