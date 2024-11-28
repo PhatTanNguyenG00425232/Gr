@@ -12,10 +12,10 @@ gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
 # Define different kernel sizes for the blurring
-kernel_sizes = [(3, 3), (5, 5), (9, 9), (13, 13)]
+kernel_sizes = [(3, 3),  (13, 13)]
 
 
-nrows = 3
+nrows = 2
 ncols = 2
 # Plot the original and grayscale images
 plt.subplot(nrows, ncols, 1), plt.imshow(img_rgb)
@@ -29,7 +29,7 @@ for i, size in enumerate(kernel_sizes, start=3):
     blurred_img = cv2.GaussianBlur(gray, size, 0)
     blurred_rgb = cv2.cvtColor(blurred_img, cv2.COLOR_BGR2RGB)
     
-    plt.subplot(3, 2, i)
+    plt.subplot(nrows, ncols, i)
     plt.imshow(blurred_rgb)
     plt.title(f'Gaussian Blur {size[0]}x{size[1]}')
     plt.xticks([]), plt.yticks([])
